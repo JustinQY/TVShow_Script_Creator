@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Show Script Creator - Friends Edition</title>
+    <meta name="description" content="Generate Friends-style TV scripts using fine-tuned LLaMA-2 AI model">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/scriptFormatting.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📺</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📺 TV Show Script Creator</h1>
+            <p>Generate Friends-style episodes using fine-tuned LLaMA-2 AI</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Parameter Input Panel -->
+            <section class="card">
+                <h2>🎬 Script Parameters</h2>
+                
+                <!-- Character Selection -->
+                <div class="form-group">
+                    <label for="characters">Select Characters (minimum 2):</label>
+                    <div class="character-selection" id="characterSelection">
+                        <!-- Characters will be populated by JavaScript -->
+                    </div>
+                    <div class="error-message" id="characterError" style="display: none;">
+                        Please select at least 2 characters.
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <select class="form-control" id="location">
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+
+                <!-- Scenario -->
+                <div class="form-group">
+                    <label for="scenario">Scenario:</label>
+                    <input type="text" class="form-control" id="scenario" 
+                           placeholder="e.g., having coffee and discussing relationships">
+                    <small>Or select from suggestions:</small>
+                    <select class="form-control" id="scenarioSuggestions" style="margin-top: 0.5rem;">
+                        <option value="">Choose a suggestion...</option>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+
+                <!-- Seed Dialogue -->
+                <div class="form-group">
+                    <label>Seed Dialogue (optional):</label>
+                    <div class="seed-dialogue" id="seedDialogue">
+                        <div class="dialogue-entry">
+                            <select class="form-control">
+                                <option value="">Select character...</option>
+                            </select>
+                            <input type="text" class="form-control" placeholder="Enter dialogue line...">
+                            <button type="button" onclick="removeSeedDialogue(this)">×</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-dialogue-btn" onclick="addSeedDialogue()">+ Add Line</button>
+                </div>
+
+                <!-- Advanced Parameters (Collapsible) -->
+                <div class="form-group">
+                    <div class="collapsible" onclick="toggleAdvanced()">
+                        <span>⚙️ Advanced Parameters</span>
+                        <span class="collapsible-arrow">▼</span>
+                    </div>
+                    <div class="collapsible-content" id="advancedParams">
+                        <div class="advanced-params">
+                            <div class="param-slider">
+                                <label>
+                                    <span>Temperature (creativity)</span>
+                                    <span class="param-value" id="tempValue">0.9</span>
+                                </label>
+                                <input type="range" class="slider" id="temperature" 
+                                       min="0.1" max="1.0" step="0.1" value="0.9">
+                                <small>Lower = more focused, Higher = more creative</small>
+                            </div>
+                            
+                            <div class="param-slider">
+                                <label>
+                                    <span>Top K (vocabulary diversity)</span>
+                                    <span class="param-value" id="topKValue">50</span>
+                                </label>
+                                <input type="range" class="slider" id="topK" 
+                                       min="10" max="100" step="10" value="50">
+                                <small>Controls vocabulary diversity</small>
+                            </div>
+                            
+                            <div class="param-slider">
+                                <label>
+                                    <span>Top P (nucleus sampling)</span>
+                                    <span class="param-value" id="topPValue">0.95</span>
+                                </label>
+                                <input type="range" class="slider" id="topP" 
+                                       min="0.1" max="1.0" step="0.05" value="0.95">
+                                <small>Controls randomness in word selection</small>
+                            </div>
+                            
+                            <div class="param-slider">
+                                <label>
+                                    <span>Max New Tokens</span>
+                                    <span class="param-value" id="maxTokensValue">2048</span>
+                                </label>
+                                <input type="range" class="slider" id="maxTokens" 
+                                       min="512" max="4096" step="256" value="2048">
+                                <small>Maximum length of generated script</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button type="button" class="btn btn-primary generate-btn" id="generateBtn" onclick="generateScript()">
+                    🎭 Generate Script
+                </button>
+            </section>
+
+            <!-- Script Output Panel -->
+            <section class="card">
+                <h2>📜 Generated Script</h2>
+                <div id="scriptOutput">
+                    <div class="script-content" style="text-align: center; color: #6c757d; padding: 3rem;">
+                        <p>🎬 Your generated script will appear here</p>
+                        <p>Select characters and parameters, then click "Generate Script" to begin!</p>
+                    </div>
+                </div>
+                
+                <div class="script-actions" id="scriptActions" style="display: none;">
+                    <button type="button" class="btn btn-outline" onclick="copyScript()">
+                        📋 Copy Script
+                    </button>
+                    <button type="button" class="btn btn-outline" onclick="downloadScript()">
+                        💾 Download
+                    </button>
+                    <button type="button" class="btn btn-outline" onclick="shareScript()">
+                        🔗 Share
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="regenerateScript()">
+                        🔄 Regenerate
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Preset Combinations -->
+        <section class="card">
+            <h2>🎯 Quick Start Presets</h2>
+            <div class="preset-grid" id="presetGrid">
+                <!-- Presets will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Script History -->
+        <section class="card history-panel" id="historyPanel" style="display: none;">
+            <h2>📚 Script History</h2>
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline" onclick="clearHistory()">
+                    🗑️ Clear History
+                </button>
+                <button type="button" class="btn btn-outline" onclick="exportHistory()">
+                    📤 Export All
+                </button>
+            </div>
+            <div class="history-grid" id="historyGrid">
+                <!-- History items will be populated by JavaScript -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3 id="loadingTitle">Generating Script...</h3>
+            <p id="loadingMessage">Initializing AI model...</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+            </div>
+            <p><small>This may take a few moments</small></p>
+        </div>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div id="messageContainer"></div>
+
+    <!-- Scripts -->
+    <script src="data/friendsData.js"></script>
+    <script src="data/sampleScripts.js"></script>
+    <script src="services/mockScriptGenerator.js"></script>
+    <script src="components/parameterForm.js"></script>
+    <script src="components/scriptDisplay.js"></script>
+    <script src="components/loadingStates.js"></script>
+    <script src="utils/errorHandling.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+

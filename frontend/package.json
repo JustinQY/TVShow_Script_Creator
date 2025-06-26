@@ -1,0 +1,16 @@
+{
+  "name": "tvshow-script-creator-frontend",
+  "version": "1.0.0",
+  "description": "Frontend interface for TV Show Script Creator using fine-tuned LLaMA-2",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000"
+  },
+  "keywords": ["tv-scripts", "llama2", "friends", "script-generation", "ai"],
+  "author": "TV Show Script Creator",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}
+

@@ -1,0 +1,351 @@
+/* Specialized CSS for TV Script Formatting */
+
+.script-display {
+    font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+    background: #ffffff;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    line-height: 1.8;
+    color: #2c3e50;
+}
+
+.script-display.formatted {
+    font-family: 'Times New Roman', 'Georgia', serif;
+}
+
+/* Scene Descriptions */
+.scene-description {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #1e3a8a;
+    margin: 1.5rem 0 1rem 0;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    border-left: 5px solid #3b82f6;
+    border-radius: 0 8px 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Character Dialogue */
+.dialogue {
+    margin: 0.75rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+.speaker {
+    font-weight: bold;
+    color: #dc2626;
+    font-size: 1.05rem;
+    margin-right: 0.5rem;
+    min-width: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.line {
+    color: #374151;
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Stage Directions */
+.stage-direction {
+    font-style: italic;
+    color: #6b7280;
+    margin: 0.5rem 0;
+    padding-left: 2rem;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.stage-direction::before {
+    content: '(';
+    position: absolute;
+    left: 1rem;
+    color: #9ca3af;
+}
+
+.stage-direction::after {
+    content: ')';
+    color: #9ca3af;
+}
+
+/* Narrative Text */
+.narrative {
+    color: #4b5563;
+    margin: 0.75rem 0;
+    font-style: italic;
+    padding-left: 1rem;
+    border-left: 3px solid #d1d5db;
+}
+
+/* Character-Specific Styling */
+.speaker.rachel { color: #ec4899; }
+.speaker.monica { color: #8b5cf6; }
+.speaker.phoebe { color: #10b981; }
+.speaker.ross { color: #f59e0b; }
+.speaker.chandler { color: #3b82f6; }
+.speaker.joey { color: #ef4444; }
+
+/* Scene Transitions */
+.scene-transition {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    color: #64748b;
+    font-style: italic;
+}
+
+/* Time/Location Indicators */
+.time-location {
+    font-size: 0.9rem;
+    color: #6b7280;
+    text-align: right;
+    margin: 0.5rem 0;
+    font-style: italic;
+}
+
+/* Episode Markers */
+.episode-start {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border: 2px solid #f59e0b;
+    border-radius: 12px;
+}
+
+.episode-end {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #374151;
+    margin: 2rem 0 1rem 0;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+    border: 2px solid #9ca3af;
+    border-radius: 8px;
+}
+
+/* Commercial Break Indicators */
+.commercial-break {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 0.75rem;
+    background: #1f2937;
+    color: #f9fafb;
+    border-radius: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Flashback/Dream Sequences */
+.flashback {
+    background: rgba(139, 92, 246, 0.05);
+    border-left: 4px solid #8b5cf6;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.dream-sequence {
+    background: rgba(236, 72, 153, 0.05);
+    border-left: 4px solid #ec4899;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+}
+
+/* Sound Effects */
+.sound-effect {
+    text-align: center;
+    font-style: italic;
+    color: #7c3aed;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+/* Music Cues */
+.music-cue {
+    text-align: center;
+    font-style: italic;
+    color: #059669;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background: rgba(5, 150, 105, 0.1);
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+/* Pause Indicators */
+.pause {
+    text-align: center;
+    color: #6b7280;
+    font-style: italic;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.pause::before,
+.pause::after {
+    content: '...';
+    color: #9ca3af;
+}
+
+/* Emphasis and Special Formatting */
+.emphasis {
+    font-weight: bold;
+    color: #dc2626;
+}
+
+.whisper {
+    font-style: italic;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.shout {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #dc2626;
+}
+
+.phone-conversation {
+    background: rgba(59, 130, 246, 0.05);
+    border-left: 4px solid #3b82f6;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .script-display {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .dialogue {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .speaker {
+        min-width: auto;
+        margin-bottom: 0.25rem;
+    }
+    
+    .scene-description {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .stage-direction {
+        padding-left: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .script-display {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .episode-start,
+    .episode-end {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .script-display {
+        box-shadow: none;
+        border: 1px solid #000;
+        background: white;
+        font-size: 12pt;
+        line-height: 1.6;
+    }
+    
+    .scene-description {
+        background: none;
+        border-left: 2px solid #000;
+        color: #000;
+    }
+    
+    .speaker {
+        color: #000;
+    }
+    
+    .stage-direction {
+        color: #333;
+    }
+    
+    .dialogue {
+        page-break-inside: avoid;
+    }
+    
+    .scene-description {
+        page-break-after: avoid;
+    }
+}
+
+/* Animation for Script Loading */
+.script-loading {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: scriptFadeIn 0.6s ease-out forwards;
+}
+
+@keyframes scriptFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Highlight Animation for New Content */
+.new-content {
+    animation: highlightNew 2s ease-out;
+}
+
+@keyframes highlightNew {
+    0% {
+        background-color: rgba(34, 197, 94, 0.2);
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+/* Copy Success Animation */
+.copy-success {
+    animation: copyPulse 0.6s ease-out;
+}
+
+@keyframes copyPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+        background-color: rgba(34, 197, 94, 0.1);
+    }
+}
+
